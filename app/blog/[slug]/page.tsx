@@ -2,20 +2,19 @@ import { getPostData, getAllPostIds } from "@/lib/posts";
 import type { Metadata } from "next";
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
-// Generate metadata for each blog post page
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const postData = await getPostData(params.slug);
+  const { slug } = await params;
+  const postData = await getPostData(slug);
   return {
     title: postData.title,
   };
 }
 
-// Statically generate routes for all posts at build time
 export async function generateStaticParams() {
   const paths = getAllPostIds();
   return paths.map((path) => ({
@@ -24,7 +23,8 @@ export async function generateStaticParams() {
 }
 
 export default async function PostPage({ params }: Props) {
-  const postData = await getPostData(params.slug);
+  const { slug } = await params;
+  const postData = await getPostData(slug);
 
   return (
     <div className="w-full">
