@@ -31,10 +31,7 @@ export default async function PostPage({ params }: Props) {
       <h1 className="text-4xl font-bold mb-2">{postData.title}</h1>
       <div className="text-md text-gray-500 mb-8">{postData.date}</div>
 
-      <article
-        className="prose max-w-none"
-        dangerouslySetInnerHTML={{ __html: postData.contentHtml || "" }}
-      />
+      <article className="prose max-w-none">{postData.content}</article>
     </div>
   );
 }
