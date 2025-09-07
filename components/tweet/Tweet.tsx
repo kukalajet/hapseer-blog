@@ -1,5 +1,5 @@
-import { Tweet } from 'react-tweet'
+import { Tweet as TweetComponent } from "react-tweet";
 
-export function TweetComponent({ id }: { id: string }) {
-  return <Tweet id={id} />
+export function Tweet({ id }: { id: string }) {
+  return <TweetComponent id={id} />;
 }
