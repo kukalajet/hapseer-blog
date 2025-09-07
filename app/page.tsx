@@ -12,11 +12,13 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row sm:justify-between">
               <Link
                 href={`/blog/${id}`}
-                className="text-lg hover:text-gray-500"
+                className="text-lg hover:text-gray-500 dark:hover:text-gray-400"
               >
                 {title}
               </Link>
-              <small className="text-gray-500 mt-1 sm:mt-0">{date}</small>
+              <small className="text-gray-500 dark:text-gray-400 mt-1 sm:mt-0">
+                {date}
+              </small>
             </div>
           </li>
         ))}
