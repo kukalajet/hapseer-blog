@@ -1,15 +1,6 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { remark } from "remark";
-import remarkMdx from "remark-mdx";
-import remarkRehype from "remark-rehype";
-import rehypeSlug from "rehype-slug";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypeReact from "rehype-react";
-import React from "react";
-import { jsx, jsxs } from "react/jsx-runtime";
-import { mdxComponents } from "./mdx-components";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
@@ -17,7 +8,7 @@ export type PostData = {
   id: string;
   date: string;
   title: string;
-  content?: React.ReactElement;
+  content?: string;
   isMdx?: boolean;
 };
 
@@ -83,34 +74,10 @@ async function getPostData(slug: string): Promise<PostData> {
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const matterResult = matter(fileContents);
 
-  // Create a unified remark processor
-  let remarkProcessor = remark();
-
-  // Add MDX support if needed
-  if (isMdx) {
-    remarkProcessor = remarkProcessor.use(remarkMdx);
-  }
-
-  // Process content through unified pipeline
-  const processedContent = await remarkProcessor
-    .use(remarkRehype, { allowDangerousHtml: true })
-    .use(rehypeSlug)
-    .use(rehypeAutolinkHeadings)
-    .use(rehypeReact, {
-      createElement: React.createElement,
-      Fragment: React.Fragment,
-      jsx: jsx,
-      jsxs: jsxs,
-      components: mdxComponents,
-    })
-    .process(matterResult.content);
-
-  const content = processedContent.result;
-
   return {
     id: slug,
     isMdx,
-    content,
+    content: matterResult.content,
     ...matterResult.data,
   } as PostData;
 }

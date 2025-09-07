@@ -12,6 +12,7 @@
     "@tailwindcss/typography": "^0.5.16",
     "gray-matter": "^4.0.3",
     "next": "15.5.0",
+    "next-mdx-remote": "^5.0.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "rehype-autolink-headings": "^7.1.0",

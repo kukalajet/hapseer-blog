@@ -1,6 +1,10 @@
 import { getPostData, getAllPostIds } from "@/lib/posts";
-import { MDXContent } from "@/components";
 import type { Metadata } from "next";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import { mdxComponents } from "@/lib/mdx-components";
+
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
 type Props = {
   params: Promise<{
@@ -33,7 +37,15 @@ export default async function PostPage({ params }: Props) {
       <div className="text-md text-gray-500 mb-8">{postData.date}</div>
 
       <article className="prose max-w-none">
-        <MDXContent content={postData.content} />
+        <MDXRemote
+          source={postData.content!}
+          components={mdxComponents}
+          options={{
+            mdxOptions: {
+              rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
+            },
+          }}
+        />
       </article>
     </div>
   );
