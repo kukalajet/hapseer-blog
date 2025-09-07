@@ -5,6 +5,7 @@ import { mdxComponents } from "@/lib/mdx-components";
 
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeExternalLinks from "rehype-external-links";
 
 type Props = {
   params: Promise<{
@@ -42,7 +43,14 @@ export default async function PostPage({ params }: Props) {
           components={mdxComponents}
           options={{
             mdxOptions: {
-              rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
+              rehypePlugins: [
+                rehypeSlug,
+                rehypeAutolinkHeadings,
+                [
+                  rehypeExternalLinks,
+                  { target: "_blank", rel: ["noopener", "noreferrer"] },
+                ],
+              ],
             },
           }}
         />
