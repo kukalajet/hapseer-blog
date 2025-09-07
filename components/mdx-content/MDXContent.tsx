@@ -14,4 +14,4 @@ const MDXContent: React.FC<MDXContentProps> = ({ content }) => {
   return <div>No content available</div>;
 };
 
-export default MDXContent;
+export { MDXContent };

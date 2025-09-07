@@ -1,5 +1,5 @@
 import { getPostData, getAllPostIds } from "@/lib/posts";
-import MDXContent from "@/components/MDXContent";
+import { MDXContent } from "@/components";
 import type { Metadata } from "next";
 
 type Props = {
