@@ -29,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${spectral.variable}`}>
-      <body className="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-serif antialiased">
+      <body className="bg-white text-gray-800 font-serif antialiased">
         <main className="max-w-3xl mx-auto px-4 py-8">
           <Header />
           {children}
