@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 
@@ -7,8 +8,15 @@ const Header: FC = () => {
       <nav className="flex justify-between items-center">
         <Link
           href="/"
-          className="text-gray-800 dark:text-gray-200 hover:text-gray-500 dark:hover:text-gray-400"
+          className="flex items-center text-gray-800 dark:text-gray-200 hover:text-gray-500 dark:hover:text-gray-400"
         >
+          <Image
+            src="/favicon.ico"
+            alt="Hapseer Logo"
+            width={32}
+            height={32}
+            className="mr-2"
+          />
           <span className="text-2xl font-sans">Hapseer</span>
         </Link>
         <a

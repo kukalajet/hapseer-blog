@@ -18,8 +18,8 @@ const spectral = Spectral({
 });
 
 export const metadata: Metadata = {
-  title: "Hapseer Blog",
-  description: "A space for steps forward",
+  title: "Hapseer",
+  description: "Hap + Seer",
 };
 
 export default function RootLayout({
