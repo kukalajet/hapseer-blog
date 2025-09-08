@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Spectral } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components";
+import { GoogleAnalytics, Header } from "@/components";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -30,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${spectral.variable}`}>
       <body className="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-serif antialiased">
+        <GoogleAnalytics />
         <main className="max-w-3xl mx-auto px-4 py-8">
           <Header />
           {children}
