@@ -59,7 +59,7 @@ Earlier this year, most AI models failed to count the number of `r`s in the word
 
 Large language models are built by training on immense textual datasets with the goal of mimicking who created them: us. Even the evaluation process (assessing the performance, reliability, and quality of an AI model) is primarily based on how humans generate answers. This is why they have a tendency to fail in the same places we do.
 
-In essence, LLMs excel at tasks that humans already perform well, but struggle with what computers typically do easily, such as multiplying two numbers. This technology can replace humans in some tasks, but it cannot replace deterministic systems (like traditional computers) or specialized statistical approaches (traditional machine learning). Just like us, LLMs fail to handle tabular data effectively. Conversely, also like us, the technology can extract information from unstructured data, for example, determining the subject of a sentence. Without a new academic breakthrough, the current state of how things work is unlikely to change.
+In essence, LLMs excel at tasks that humans already perform well, but struggle with what computers typically do easily, such as multiplying two numbers. This technology can replace humans in some tasks, but it cannot replace deterministic systems (like computers) or specialized statistical approaches (traditional machine learning). Just like us, LLMs fail to handle tabular data effectively. Conversely, also like us, the technology can extract information from unstructured data, for example, determining the subject of a sentence. Without a new academic breakthrough, the current state of how things work is unlikely to change.
 
 The technology required to identify an "anomaly" in a dataset, like fraudulent credit card usage or the corrupt use of funds, has been tackled for decades, most of the times without even needing neural networks. This is to say that if we want to adopt statistical approaches to fight corruption at the decision-making stage (once all offers have been submitted), we don't have to wait until 2030. There is no need for AI like ChatGPT. In fact, we can do it now and have been able to for at least 15-20 years. The only thing we need is the commitment to gather the necessary data to build performant models. If we could build supervised tabular datasets, we could adopt simple and battle-tested approaches such as gradient boosting (_[XGBoost is all you need](https://www.xgblog.ai/p/xgboost-is-all-you-need)_).
 
@@ -78,13 +78,19 @@ A legitimate question arises: what do we optimize our AI Ministers for? For deca
 
 From a technological standpoint, we may not be there yet, but powerful techniques to "fine-tune" (that is, improve for specific tasks) existing models have emerged in the last couple of years. Reinforcement Learning from Human Feedback (RLHF) is a method that allows us to "educate" our models by giving them a reward when they behave as expected. We place them in front of various choices, "rewarding" them when they do well and "punishing" them when they do poorly. Imagine a "Doctor Strange" AI model that could envision and learn from every possible near-future scenario to optimize its decision-making. I don't see this as an unforeseeable future.
 
+![An image of a robot taking an oath on the Albanian constitution.](/images/deploying-ai-to-the-balkans-2.png)
+
 This approach, often using algorithms like Proximal Policy Optimization (PPO), has proven to be a great way to specialize AI for specific tasks like coding or math. The primary limitation we currently face in adopting it for more general tasks is that it is data-hungry, requiring environments from which models can continuously learn. For example, [major AI labs compete to see which model can finish Pokémon games faster](https://x.com/Clad3815/status/1955980772575268897), with the Pokémon world serving as the environment. We can't realistically create an environment to train an AI for the role of a Minister of Defense (or _[War](https://www.whitehouse.gov/presidential-actions/2025/09/restoring-the-united-states-department-of-war/)_), as the required environment would be the entirety of society, or better yet, the whole world and its dynamics.
 
 Who knows, maybe one day we will be able to create virtual environments similar to our world where AI models can learn efficiently. As of today, however, effective ways of fine-tuning AI models are constrained by the need for clear rules and objectives. Coding and math tasks, for instance, are perfect for this. No matter how noble our objective function (or, more accurately, our reward function) is, we won't be able to train LLMs to optimize it without such an environment.
 
 ## What Can Go Wrong?
 
-![An image of a robot taking an oath on the Albanian constitution.](/images/deploying-ai-to-the-balkans-1.jpeg)
+> A computer can never be held accountable
+>
+> Therefore a computer must never make a management decision
+>
+> — [An internal IBM training, 1979](https://simonwillison.net/2025/Feb/3/a-computer-can-never-be-held-accountable/)
 
 Until now, I have focused on the possibilities of AI. However, the time has come to consider the current state and limitations of these tools. I'd like to explore this fictionally, through the lens of Balkan dynamics. Again, purely as an "intellectual game".
 
@@ -112,6 +118,8 @@ Therefore, it is legitimate to ask whether our AI Minister took the blame becaus
 
 The AI did not choose random locations to build Albanian schools. The Presheva Valley has a population that is [over 90% ethnically Albanian](https://en.wikipedia.org/wiki/Pre%C5%A1evo_Valley#Demographics), while Skopje is home to [more than one hundred thousand ethnic Albanian citizens](https://en.wikipedia.org/wiki/Skopje#Demographics). Moreover, do you recall its oath to the constitution? _[Article 8](https://www.gjk.gov.al/web/constitution_of_albania_1722.pdf)_ of the Albanian Constitution states:
 
-> The Republic of Albania protects the national rights of the Albanian people who live outside its borders.
+> Article 8
+>
+> 1. The Republic of Albania protects the national rights of the Albanian people who live outside its borders.
 
 Linguistic rights are considered "national rights". We don't know for sure if our model perceived the situation as critical for Albanian minorities in other Balkan countries and adopted a more patriotic stance, choosing to help them first. We can't know for sure, at least not yet. And as long as we are unable to fully understand how these models operate, _we cannot expect to find a sincere friend in them_.
