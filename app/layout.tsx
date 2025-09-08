@@ -19,7 +19,7 @@ const spectral = Spectral({
 
 export const metadata: Metadata = {
   title: "Hapseer",
-  description: "Hap + Seer",
+  description: "HapSeer",
 };
 
 export default function RootLayout({
