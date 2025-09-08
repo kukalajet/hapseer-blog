@@ -15,9 +15,32 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const postData = await getPostData(slug);
+  const postData = (await getPostData(slug)) as any;
+
+  const fullUrl = process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : `http://localhost:3000`;
+
   return {
     title: postData.title,
+    description: postData.description,
+    openGraph: {
+      title: postData.title,
+      description: postData.description,
+      type: "article",
+      url: `${fullUrl}/blog/${postData.slug}`,
+      images: [
+        {
+          url: `${fullUrl}${postData.thumbnail}`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: postData.title,
+      description: postData.description,
+      images: [`${fullUrl}${postData.thumbnail}`],
+    },
   };
 }
 
