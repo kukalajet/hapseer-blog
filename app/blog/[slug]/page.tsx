@@ -15,7 +15,7 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const postData = (await getPostData(slug)) as any;
+  const postData = await getPostData(slug);
 
   const fullUrl = process.env.VERCEL_URL
     ? `https://${process.env.VERCEL_URL}`

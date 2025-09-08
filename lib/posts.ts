@@ -10,6 +10,9 @@ export type PostData = {
   title: string;
   content?: string;
   isMdx?: boolean;
+  description: string;
+  slug: string;
+  thumbnail: string;
 };
 
 function getSortedPostsData(): Omit<PostData, "content">[] {
