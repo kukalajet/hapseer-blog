@@ -1,7 +1,9 @@
-import { getPostData, getAllPostIds } from "@/lib/posts";
+import Link from "next/link";
+import { getPostData, getAllPostIds, estimateReadingTime } from "@/lib/posts";
 import type { Metadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { mdxComponents } from "@/lib/mdx-components";
+import { ReadingProgress } from "@/components";
 
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
@@ -57,10 +59,34 @@ export default async function PostPage({ params }: Props) {
 
   return (
     <div className="w-full">
-      <h1 className="text-5xl font-bold mb-2">{postData.title}</h1>
-      <div className="text-lg text-gray-500 mb-8">{postData.date}</div>
+      <ReadingProgress />
+      <Link
+        href="/"
+        className="inline-flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors mb-6"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+          <path fillRule="evenodd" d="M17 10a.75.75 0 0 1-.75.75H5.612l4.158 3.96a.75.75 0 1 1-1.04 1.08l-5.5-5.25a.75.75 0 0 1 0-1.08l5.5-5.25a.75.75 0 1 1 1.04 1.08L5.612 9.25H16.25A.75.75 0 0 1 17 10Z" clipRule="evenodd" />
+        </svg>
+        All posts
+      </Link>
+      <h1 className="text-4xl sm:text-5xl font-bold mb-4">{postData.title}</h1>
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-500 dark:text-gray-400 mb-4">
+        {postData.author && (
+          <span>
+            {postData.author.url ? (
+              <a href={postData.author.url} className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors" target="_blank" rel="noopener noreferrer">
+                {postData.author.name}
+              </a>
+            ) : (
+              postData.author.name
+            )}
+          </span>
+        )}
+        <span>{postData.date}</span>
+        <span>{estimateReadingTime(postData.content!)} min read</span>
+      </div>
 
-      <article className="prose max-w-none">
+      <article className="prose dark:prose-invert max-w-none">
         <MDXRemote
           source={postData.content!}
           components={mdxComponents}

@@ -7,13 +7,24 @@ const postsDirectory = path.join(process.cwd(), "posts");
 export type PostData = {
   id: string;
   date: string;
+  updated?: string;
   title: string;
   content?: string;
   isMdx?: boolean;
   description: string;
   slug: string;
   thumbnail: string;
+  tags?: string[];
+  author?: {
+    name: string;
+    url?: string;
+  };
 };
+
+export function estimateReadingTime(content: string): number {
+  const words = content.trim().split(/\s+/).length;
+  return Math.max(1, Math.round(words / 230));
+}
 
 function getSortedPostsData(): Omit<PostData, "content">[] {
   const fileNames = fs.readdirSync(postsDirectory);
