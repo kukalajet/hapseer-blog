@@ -68,12 +68,25 @@ function getAllPostIds() {
 }
 
 async function getPostData(slug: string): Promise<PostData> {
+  // Validate slug to prevent path traversal attacks
+  if (!/^[a-zA-Z0-9][a-zA-Z0-9_-]*$/.test(slug)) {
+    throw new Error(`Invalid slug: ${slug}`);
+  }
+
   // Check for both .md and .mdx files
   let fullPath: string;
   let isMdx = false;
 
   const mdxPath = path.join(postsDirectory, `${slug}.mdx`);
   const mdPath = path.join(postsDirectory, `${slug}.md`);
+
+  // Double-check resolved paths stay within posts directory
+  if (
+    !path.resolve(mdxPath).startsWith(postsDirectory) ||
+    !path.resolve(mdPath).startsWith(postsDirectory)
+  ) {
+    throw new Error(`Invalid post path: ${slug}`);
+  }
 
   if (fs.existsSync(mdxPath)) {
     fullPath = mdxPath;
